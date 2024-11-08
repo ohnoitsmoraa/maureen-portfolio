@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { GiReturnArrow } from "react-icons/gi";
-import error from "../assets/error.svg";
+// import error from "../assets/error.svg";
 
 const ErrorPage = () => {
     return (
@@ -12,7 +12,7 @@ const ErrorPage = () => {
                 <GiReturnArrow className="text-xl sm:text-3xl md:text-5xl" />
                 <span className="text-xl sm:text-2xl md:text-4xl ">Homepage</span>
             </Link>
-            <img src={error} alt="404 Error" className="mt-14 md:mt-0" />
+            {/* <img src={error} alt="404 Error" className="mt-14 md:mt-0" /> */}
         </div>
     );
 };

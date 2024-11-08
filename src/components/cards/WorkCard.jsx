@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { VerticalTimelineElement } from "react-vertical-timeline-component";
 
 const WorkCard = ({ work }) => {
@@ -7,9 +8,6 @@ const WorkCard = ({ work }) => {
       contentStyle={{
         background: "#005c1700",
         color: "#ffffff",
-        // borderBottom: "6px",
-        // borderStyle: "solid",
-        // borderBottomColor: "#01f53f",
         boxShadow: "0px 0px 20px -1px #01f53f80",
       }}
       contentArrowStyle={{ borderRight: "7px solid  #0B1120" }}
@@ -34,16 +32,13 @@ const WorkCard = ({ work }) => {
             target="_blank"
             rel="noreferrer"
           >
-            <span className=" absolute text-xs -top-9 -right-6 bg-[#00701c] hover:bg-[#11471f] p-1 rounded-full text-[#ffffff] transition duration-300 ease-in-out">
+            <span className="absolute text-xs -top-9 -right-6 bg-[#00701c] hover:bg-[#11471f] p-1 rounded-full text-[#ffffff] transition duration-300 ease-in-out">
               {work.supported}
             </span>
           </a>
         )}
         <h3 className="text-[#ffffff] text-[24px] font-bold">{work.title}</h3>
-        <p
-          className="text-secondary text-[16px] font-semibold"
-          style={{ margin: 0 }}
-        >
+        <p className="text-secondary text-[16px] font-semibold" style={{ margin: 0 }}>
           {work.company_name}
         </p>
       </div>
@@ -60,6 +55,18 @@ const WorkCard = ({ work }) => {
       </ul>
     </VerticalTimelineElement>
   );
+};
+
+WorkCard.propTypes = {
+  work: PropTypes.shape({
+    date: PropTypes.string.isRequired,
+    icon: PropTypes.string.isRequired,
+    iconBg: PropTypes.string.isRequired,
+    supported: PropTypes.string,
+    title: PropTypes.string.isRequired,
+    company_name: PropTypes.string.isRequired,
+    points: PropTypes.arrayOf(PropTypes.string).isRequired,
+  }).isRequired,
 };
 
 export default WorkCard;

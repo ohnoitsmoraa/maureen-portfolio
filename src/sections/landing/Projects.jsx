@@ -1,10 +1,9 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { TypingText } from "../../components/animationtext/TypingText";
+import { TypingText } from "../../components/animations/TypingText";
 import ProjectCard from "../../components/cards/ProjectCard";
 import { staggerContainer } from "../../motion";
 import { BsFillArrowUpRightCircleFill } from "react-icons/bs";
-// import testimg from "../assets/testimg.png";
 import { Link } from "react-router-dom";
 
 const Projects = () => {

@@ -1,9 +1,9 @@
 import { motion } from "framer-motion";
-import { TypingText } from "../../components/animationtext/TypingText";
+import { TypingText } from "../../components/animations/TypingText";
 import { staggerContainer } from "../../motion";
 import { VerticalTimeline } from "react-vertical-timeline-component";
 import "react-vertical-timeline-component/style.min.css";
-import { workData } from "../../components/Data/WorkData";
+import { workData } from "../../components/data/WorkData";
 import WorkCard from "../../components/cards/WorkCard";
 
 const Work = () => {

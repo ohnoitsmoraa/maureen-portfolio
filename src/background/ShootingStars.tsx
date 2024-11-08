@@ -1,6 +1,6 @@
-import React, { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef } from "react";
 
-interface ShootingStar {
+interface ShootingStarProps {
 	id: number;
 	x: number;
 	y: number;
@@ -15,45 +15,60 @@ const getRandomStartPoint = () => {
 	const offset = Math.random() * window.innerWidth;
 
 	switch (side) {
-		case 0: // Top
+		case 0:
 			return { x: offset, y: 0, angle: 45 };
-		case 1: // Right
+		case 1:
 			return { x: window.innerWidth, y: offset, angle: 135 };
-		case 2: // Bottom
+		case 2:
 			return { x: offset, y: window.innerHeight, angle: 225 };
-		case 3: // Left
+		case 3:
 			return { x: 0, y: offset, angle: 315 };
 		default:
 			return { x: 0, y: 0, angle: 45 };
 	}
 };
 
-const ShootingStars: React.FC = () => {
-	const [star, setStar] = useState<ShootingStar | null>(null);
+const ShootingStars: React.FC<ShootingStarProps> = ({
+	id,
+	x,
+	y,
+	angle,
+	scale,
+	speed,
+	distance,
+}: ShootingStarProps) => {
+	const [star, setStar] = useState<ShootingStarProps | null>({
+		id,
+		x,
+		y,
+		angle,
+		scale,
+		speed,
+		distance,
+	});
 	const svgRef = useRef<SVGSVGElement>(null);
 
 	useEffect(() => {
 		const createStar = () => {
 			const { x, y, angle } = getRandomStartPoint();
-			const newStar: ShootingStar = {
+			const newStar: ShootingStarProps = {
 				id: Date.now(),
 				x,
 				y,
 				angle,
 				scale: 1,
-				speed: Math.random() * 20 + 10, // Increased speed range
+				speed: Math.random() * 20 + 10,
 				distance: 0,
 			};
 			setStar(newStar);
 
-			// Set a random delay (between 0.5 and 4 seconds) for creating the next star
 			const randomDelay = Math.random() * 4500 + 4200;
 			setTimeout(createStar, randomDelay);
 		};
 
-		createStar(); // Initial star creation
+		createStar();
 
-		return () => {}; // No cleanup needed for timeout
+		return () => {};
 	}, []);
 
 	useEffect(() => {
@@ -68,15 +83,14 @@ const ShootingStars: React.FC = () => {
 						prevStar.y +
 						prevStar.speed * Math.sin((prevStar.angle * Math.PI) / 180);
 					const newDistance = prevStar.distance + prevStar.speed;
-					const newScale = 1 + newDistance / 100; // Adjust scale based on distance traveled
-					// Check if the star is out of bounds considering the star size
+					const newScale = 1 + newDistance / 100;
 					if (
 						newX < -20 ||
 						newX > window.innerWidth + 20 ||
 						newY < -20 ||
 						newY > window.innerHeight + 20
 					) {
-						return null; // Star moves out of bounds, remove it
+						return null;
 					}
 					return {
 						...prevStar,

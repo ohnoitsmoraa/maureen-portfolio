@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import BallCanvas from "../../canvas/Ball";
-import { TypingText } from "../../components/animationtext/TypingText";
+import { TypingText } from "../../components/animations/TypingText";
+// import BallCanvas from "../../components/canvas/Ball"
 // import { Tilt } from "react-tilt";
 // import { SiHtml5 } from "react-icons/si";
 
@@ -53,7 +53,7 @@ const Skills = () => {
 								className=" w-28 h-28 flex items-center justify-center flex-wrap"
 								key={skill.name}
 							>
-								<BallCanvas icon={skill.icon} />
+								{/* <BallCanvas icon={skill.icon} /> */}
 							</div>
 						))}
 					</div>
